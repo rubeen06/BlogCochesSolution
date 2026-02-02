@@ -1,0 +1,94 @@
+﻿@model BlogCochesSolution.Models.ViewModels.ArticuloVM
+@{
+    ViewData["Title"] = "Editar Artículo";
+}
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
+                <div>
+                    <h2 class="fw-bold text-dark mb-0">Editar Artículo</h2>
+                    <p class="text-muted">Modifica los detalles y actualiza el contenido publicado.</p>
+                </div>
+                <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">
+                    <i class="bi bi-arrow-left me-2"></i> Cancelar
+                </a>
+            </div>
+
+            <form method="POST" asp-action="Edit" enctype="multipart/form-data" class="edit-container-pro">
+                <input type="hidden" asp-for="Articulo.Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="mb-4">
+                            <label asp-for="Articulo.Nombre" class="form-label-pro">Título</label>
+                            <input asp-for="Articulo.Nombre" class="form-control-pro w-100" />
+                            <span asp-validation-for="Articulo.Nombre" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Articulo.Descripcion" class="form-label-pro">Contenido</label>
+                            <textarea asp-for="Articulo.Descripcion" id="Contenido" class="form-control-pro"></textarea>
+                            <span asp-validation-for="Articulo.Descripcion" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="mb-4">
+                            <label class="form-label-pro">Categoría</label>
+                            @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategorias,
+                            "- Seleccionar -", new { @class = "form-select form-control-pro" })
+                            <span asp-validation-for="Articulo.CategoriaId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label-pro">Imagen de Portada</label>
+                            <div class="current-image-card position-relative mb-3">
+                                <span class="image-label-badge">Imagen Actual</span>
+                                <img src="@Model.Articulo.UrlImagen" id="imagePreview" class="img-fluid" alt="Actual" />
+                            </div>
+
+                            <label class="form-label-pro text-muted" style="font-size: 0.7rem;">Cambiar imagen</label>
+                            <input type="file" class="form-control form-control-pro" name="archivos" id="subidaArchivo" accept="image/*" onchange="previewImage(event)" />
+                        </div>
+
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn-update shadow-sm">
+                                <i class="bi bi-check-circle me-2"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/simplemde@1.11.2/dist/simplemde.min.js"></script>
+
+    <script>
+        var simplemde = new SimpleMDE({
+            element: document.getElementById("Contenido"),
+            spellChecker: false,
+            status: false
+        });
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}

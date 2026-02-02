@@ -1,0 +1,82 @@
+﻿@model BlogCochesSolution.Models.Slider
+@{
+    ViewData["Title"] = "Crear Slider";
+}
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <div class="text-center mb-4 mt-5">
+                <h2 class="fw-bold text-slate-800">Crear Slider</h2>
+                <p class="text-muted">Crea un nuevo slider.</p>
+            </div>
+
+            <form method="POST" asp-action="Create" enctype="multipart/form-data" class="form-container-pro">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+                <!-- Nombre -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <label asp-for="Nombre" class="form-label-pro">Nombre del slider</label>
+                            <input asp-for="Nombre" class="form-control-pro w-100" placeholder="Ingresa el nombre del slider" />
+                            <span asp-validation-for="Nombre" class="text-danger small"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estado -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <label asp-for="Estado" class="form-label-pro">Estado</label>
+                            <select asp-for="Estado" class="form-control-pro w-100">
+                                <option value="">-- Selecciona un estado --</option>
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                            <span asp-validation-for="Estado" class="text-danger small"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen -->
+                <div class="mb-4">
+                    <label class="form-label-pro">Imagen de Portada</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control form-control-pro" name="archivos" id="subidaArchivo" accept="image/*" onchange="previewImage(event)" />
+                    </div>
+                    <img id="imagePreview" src="#" alt="Vista previa" style="display:none; max-width:200px; margin-top:10px;" />
+                    <span asp-validation-for="UrlImagen" class="text-danger small"></span>
+                </div>
+
+                <!-- Botones parcial -->
+                <div class="form-group-row mt-4">
+                    <div class="col-8">
+                        <partial name="_VistaCrearVolver" />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Previsualización de imagen dinámica
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

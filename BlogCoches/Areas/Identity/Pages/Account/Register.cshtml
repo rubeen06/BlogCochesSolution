@@ -1,0 +1,105 @@
+﻿@page
+@using BlogCoches.Areas.Identity.Pages.Account
+@using BlogCochesSolution.Utilidades
+@model RegisterModel
+@{
+    ViewData["Title"] = "Crear Cuenta";
+}
+
+<link rel="stylesheet" href="~/css/account.css" />
+
+<div class="container account-body">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-8">
+            <div class="account-card">
+                <div class="text-center mb-4">
+                    <h1 class="account-title">Únete a BlogCoches</h1>
+                    <p class="text-muted">Completa tus datos para empezar a rodar.</p>
+                </div>
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Nombre" class="form-control" placeholder="Nombre" />
+                                <label asp-for="Input.Nombre"><i class="bi bi-person me-2"></i>Nombre Completo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                                <label asp-for="Input.Email"><i class="bi bi-envelope me-2"></i>Email</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Ciudad" class="form-control" placeholder="Ciudad" />
+                                <label asp-for="Input.Ciudad">Ciudad</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Pais" class="form-control" placeholder="País" />
+                                <label asp-for="Input.Pais">País</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Teléfono" />
+                                <label asp-for="Input.PhoneNumber">Teléfono</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Direccion" class="form-control" placeholder="Dirección" />
+                        <label asp-for="Input.Direccion">Dirección exacta</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                                <label asp-for="Input.Password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirmar" />
+                                <label asp-for="Input.ConfirmPassword">Confirmar</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+                    {
+                        <div class="role-selector text-center mb-4">
+                            <p class="small fw-bold text-uppercase text-secondary mb-2">Asignar Rol de Usuario</p>
+                            <div class="d-flex justify-content-center gap-4">
+                                <label class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                    <input type="radio" name="radUsuarioRole" value="@CNT.Administrador" /> @CNT.Administrador
+                                </label>
+                                <label class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                    <input type="radio" name="radUsuarioRole" value="@CNT.Registrado" checked /> @CNT.Registrado
+                                </label>
+                            </div>
+                        </div>
+                    }
+
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-primary btn-account btn-lg shadow">
+                        Crear Cuenta <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

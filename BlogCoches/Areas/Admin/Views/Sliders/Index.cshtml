@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Lista de Sliders";
+}
+
+<div class="container pb-5">
+    <div class="card shadow-sm border-0 mt-5" style="border-radius: 20px; overflow: hidden;">
+
+        <div class="card-header bg-white border-0 py-4 px-4">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-start">
+                    <h2 class="fw-bold text-dark mb-1">
+                        <i class="bi bi-tags-fill text-primary me-2"></i>Lista de Sliders
+                    </h2>
+
+                </div>
+                <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
+                    <a asp-action="Create" class="btn btn-primary px-4 py-2 shadow-sm rounded-pill fw-bold">
+                        <i class="bi bi-plus-lg me-1"></i> Nuevo Slider
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <br />
+    <br />
+
+        <div class="card-body px-4 pb-4">
+            <div class="table-responsive">
+                <table id="tblSliders" class="table admin-table align-middle">
+                    <thead class="text-secondary small text-uppercase">
+            <tr>
+                <th class ="border-0 ps-3">Id</th>
+                <th class="border-0">Nombre</th>
+                <th class="border-0">Estado</th>
+                <th class="border-0">Imagen</th>
+                <th class="border-0 text-center">Acciones</th>
+            </tr>
+        </thead>
+       <tbody class="small">
+       </tbody>
+    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/sliders.js"></script>
+}

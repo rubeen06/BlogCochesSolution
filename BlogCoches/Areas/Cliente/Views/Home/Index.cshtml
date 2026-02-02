@@ -1,0 +1,65 @@
+﻿@model BlogCochesSolution.Models.ViewModels.HomeVM
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="fw-bold" style="color: var(--primary-dark);">Catálogo de Artículos</h2>
+            <div style="width: 50px; height: 4px; background: var(--accent-color); border-radius: 2px;"></div>
+        </div>
+    </div>
+
+    @if (Model.ListArticulos.Count() > 0)
+    {
+        <div class="row g-4">
+            @foreach (var articulo in Model.ListArticulos.OrderBy(o => o.Id))
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-pro h-100">
+                        <div class="img-wrapper">
+                            <img src="@articulo.UrlImagen" alt="@articulo.Nombre" />
+                        </div>
+
+                        <div class="card-pro-body d-flex flex-column">
+                            <h5 class="card-pro-title">@articulo.Nombre</h5>
+
+                            <div class="mt-auto">
+                                <a asp-action="Detalle"
+                                   asp-route-id="@articulo.Id"
+                                   class="btn-pro">
+                                    Explorar Detalle
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <p class="text-muted">No se encontraron artículos disponibles.</p>
+        </div>
+    }
+
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.PageIndex > 1 ? "" : "disabled")">
+                <a class="page-link shadow-sm" asp-route-page="@(Model.PageIndex - 1)">Anterior</a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link shadow-sm" asp-route-page="@i">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.PageIndex < Model.TotalPages ? "" : "disabled")">
+                <a class="page-link shadow-sm" asp-route-page="@(Model.PageIndex + 1)">Siguiente</a>
+            </li>
+        </ul>
+    </nav>
+</div>

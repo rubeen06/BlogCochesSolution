@@ -1,0 +1,52 @@
+.form-container-pro {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.form-label-pro {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-control-pro {
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    padding: 12px 15px;
+    transition: all 0.3s;
+    background-color: #f8fafc;
+}
+
+    .form-control-pro:focus {
+        background-color: #fff;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+/* Estilo para el editor de texto */
+.editor-container .CodeMirror {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Previsualización de imagen */
+#imagePreview {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: none;
+    margin-top: 15px;
+    border: 2px dashed #cbd5e1;
+}

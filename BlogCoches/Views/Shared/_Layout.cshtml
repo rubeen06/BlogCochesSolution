@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BlogCoches</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" type="image/png" href="~/logoBCRNH.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/account/account.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home/detalleHome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home/homeIndex.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home/resultadosBusqueda.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/slider/sliderIndex.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/adminListas.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/adminCreate.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin/adminEdit.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BlogCoches.styles.css" asp-append-version="true" />
+    
+
+    <!--Css todos-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/imagenes/logoBCRNH.png" width="40" height="40" class="me-2 rounded-circle brand-logo" />
+                    <span class="brand-text">Blog<span class="text-primary">Coches</span></span>
+                </a>
+
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                    <i class="bi bi-grid-fill text-white fs-2"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 text-white" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrador"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle px-3 text-white" href="#" data-bs-toggle="dropdown">
+                                    Panel Admin
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark shadow-lg border-0 mt-2">
+                                    <li><a class="dropdown-item py-2" asp-area="Admin" asp-controller="Categorias" asp-action="Index">Categorías</a></li>
+                                    <li><a class="dropdown-item py-2" asp-area="Admin" asp-controller="Articulos" asp-action="Index">Artículos</a></li>
+                                    <li><a class="dropdown-item py-2" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Sliders</a></li>
+                                    <li><a class="dropdown-item py-2" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Usuarios</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                    <form class="d-flex me-lg-4 my-3 my-lg-0" asp-controller="Home" asp-action="ResultadoBusqueda" method="GET">
+                        <div class="search-group">
+                            <input class="search-input" type="search" name="searchString" placeholder="Buscar..." aria-label="Search">
+                            <button class="search-btn" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="d-flex align-items-center">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        @if (ViewData["Title"]?.ToString() == "Inicio" || ViewBag.IsHome == true)
+        {
+            <div class="banner-container">
+                <partial name="_Slider" />
+            </div>
+        }
+    </header>
+
+    <div class="container flex-grow-1 mt-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+       
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Js plugins-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+<footer class="footer-pro mt-auto">
+    <div class="container py-5">
+        <div class="row align-items-center gy-4">
+
+            <div class="col-lg-4 col-md-12 text-center text-lg-start">
+                <h5 class="text-white fw-bold mb-0">BlogCoches</h5>
+            </div>
+
+            <div class="col-lg-4 col-md-12 text-center">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://rubendelanietahportfolio.netlify.app" class="social-icon" title="Portfolio"><i class="bi bi-globe"></i></a>
+                    <a href="https://www.linkedin.com/in/rub%C3%A9n-de-la-nieta-27bbb1198/" class="social-icon" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/rubeen06" class="social-icon" title="GitHub"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 text-center text-lg-end">
+                <div class="author-box d-inline-block text-lg-end">
+                    <p class="small text-white mb-1">Desarrollado por</p>
+                    <a href="https://rubendelanietahportfolio.netlify.app" class="footer-author-name text-decoration-none">
+                        Rubén de la Nieta con ASP.NET <i class="bi bi-patch-check-fill text-primary"></i>
+                    </a>
+                    <p class="small text-white-50 mt-2 mb-0">&copy; @DateTime.Now.Year - Todos los derechos reservados</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+</html>

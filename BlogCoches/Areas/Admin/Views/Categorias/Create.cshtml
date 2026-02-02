@@ -1,0 +1,69 @@
+﻿@model BlogCochesSolution.Models.Categoria
+@{
+    ViewData["Title"] = "Crear Categoría";
+}
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <div class="text-center mb-4 mt-5">
+                <h2 class="fw-bold text-slate-800">Crear Categoría</h2>
+                <p class="text-muted">Crea una nueva categoría.</p>
+            </div>
+
+            <form method="POST"
+                  asp-action="Create"
+                  enctype="multipart/form-data"
+                  class="form-container-pro">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-4"></div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <label asp-for="Nombre"
+                                   class="form-label-pro">
+                                Nombre de la categoría
+                            </label>
+                            <input asp-for="Nombre"
+                                   class="form-control-pro w-100"
+                                   placeholder="Ingresa el nombre de la categoría" />
+                            <span asp-validation-for="Nombre"
+                                  class="text-danger small"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <label asp-for="Orden"
+                                   class="form-label-pro">
+                                Orden de visualización
+                            </label>
+                            <input asp-for="Orden"
+                                   class="form-control-pro w-100"
+                                   placeholder="Ingresa el orden de la categoría" />
+                            <span asp-validation-for="Orden"
+                                  class="text-danger small"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <partial name="_VistaCrearVolver" />
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

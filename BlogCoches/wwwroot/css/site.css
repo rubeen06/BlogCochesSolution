@@ -1,0 +1,252 @@
+/*:root {
+    --nav-height: 75px;
+    --primary-dark: #0f172a;
+    --accent-blue: #3b82f6;
+}*/
+
+body {
+    padding-top: var(--nav-height);
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar Moderna */
+/* --- Mejoras de la Navbar --- */
+:root {
+    --nav-bg: #0f172a; /* Azul Slate muy oscuro */
+    --accent: #3b82f6;
+}
+
+/* Forzar el fondo oscuro en la Navbar */
+.navbar-custom {
+    background-color: var(--nav-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    min-height: 75px;
+}
+
+/* Texto del Logo */
+.brand-text {
+    font-weight: 800;
+    color: white !important;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+}
+
+/* Enlaces de navegación */
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .navbar-custom .nav-link:hover {
+        color: var(--accent) !important;
+    }
+
+/* Buscador Moderno (Pill Style) */
+.search-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 4px 4px 4px 15px;
+    transition: all 0.3s ease;
+}
+
+    .search-group:focus-within {
+        border-color: var(--accent);
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+    }
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+    .search-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+.search-btn {
+    background: var(--accent);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+    .search-btn:hover {
+        transform: scale(1.1);
+    }
+
+/* Responsive: Menú móvil colapsado */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: #1e293b !important; /* Un tono un poco más claro para distinguir el menú */
+        margin-top: 15px;
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Animación de entrada para el dropdown */
+.animate.slideIn {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0rem);
+        opacity: 1;
+    }
+}
+
+.slideIn {
+    animation-name: slideIn;
+}
+.banner-container {
+    margin-top: calc(var(--nav-height) * -1); /* Sube el slider para efecto glassmorphism */
+}
+
+/* Footer Profesional */
+/* Estilos del Footer Pro */
+.footer-pro {
+    background-color: #0f172a; /* Azul muy oscuro tipo Slate */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-description {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.ls-wider {
+    letter-spacing: 0.1em;
+}
+
+.footer-link {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+    .footer-link:hover {
+        color: #3b82f6;
+        padding-left: 5px;
+    }
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+    .social-icon:hover {
+        background: #3b82f6;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    }
+
+/* Contenedor del Footer con fondo oscuro profundo */
+.footer-pro {
+    background-color: #0f172a !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1; /* Color de texto base (Gris claro legible) */
+}
+
+    /* Títulos en Blanco Puro para resaltar */
+    .footer-pro h5,
+    .footer-pro h6,
+    .footer-author-name {
+        color: #ffffff !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra sutil para despegar del fondo */
+    }
+
+/* Descripción del Blog */
+.footer-description {
+    color: #94a3b8; /* Gris azulado suave */
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Enlaces con estado Hover claro */
+.footer-link {
+    color: #cbd5e1; /* Más claro que el fondo */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+    .footer-link:hover {
+        color: #3b82f6 !important; /* Azul brillante al pasar el mouse */
+        transform: translateX(5px);
+    }
+
+/* Iconos de Redes Sociales */
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07); /* Un poco más brillante para que se vea */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+    .social-icon:hover {
+        background: #3b82f6;
+        color: white;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+/* Caja del autor con borde visible */
+.author-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Barra inferior (Copyright) */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+}
+
+/* Ajuste del Banner para que no se pegue a la navbar si es Home */
+.banner-container {
+    margin-top: -var(--nav-height); 
+}

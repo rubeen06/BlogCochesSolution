@@ -1,0 +1,64 @@
+/* account.css */
+.account-body {
+    background: #f8fafc;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.account-card {
+    background: white;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    padding: 2.5rem;
+}
+
+.account-title {
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+}
+
+.form-floating > .form-control {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+}
+
+    .form-floating > .form-control:focus {
+        background-color: white;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+    }
+
+.btn-account {
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-account:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+.role-selector {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.account-link {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+    .account-link:hover {
+        color: #3b82f6;
+    }
